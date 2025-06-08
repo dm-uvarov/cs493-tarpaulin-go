@@ -1,0 +1,1523 @@
+newman
+
+assignment6
+
+❏ 1 user login (10 pts)
+↳ 1. admin1 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 418ms time ★ 379B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 66B
+  │ { 
+  │ 	"username": "admin1@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 946B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6ImFkb
+  │ WluMSIsIm5hbWUiOiJhZG1pbjFAb3N1LmNvbSIsInBpY3R1cmUiOiJ
+  │ odHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci80MzljYjc4MzAwN
+  │ jBkMjFiNTkxZjE2NDVjODRmNGQ4Nz9zPTQ4MCZyPXBnJmQ9aHR0cHM
+  │ lM0ElMkYlMkZjZG4uYXV0aDAuY29tJTJGYXZhdGFycyUyRmFkLnBuZ
+  │ yIsInVwZGF0ZWRfYXQiOiIyMDI1LTA2LTA4VDAxOjI3OjIzLjcwM1o
+  │ iLCJpc3MiOiJodHRwczovL2Rldi11c21qdXhyZTJwZWl2dW9lLnVzL
+  │ mF1dGgwLmNvbS8iLCJhdWQiOiJ1UFdaSG1BSGo0VWdrR1dGYlBiZ2Y
+  │ zcWIyWVZzZkw2WiIsInN1YiI6ImF1dGgwfDY4NDEwY2U5YTk2OWVjM
+  │ DFlNTU2MmViMyIsImlhdCI6MTc0OTM0NjA0MywiZXhwIjoxNzQ5Mzg
+  │ yMDQzfQ.Y2bM217nisIWCkpVfy1_yEtSheJS04Kjel9XAwT0Ggdnlo
+  │ o5JxUz7Le0L118vBfhf1b0txr3W0ia0MnnuSThvZaikI9tyoLkvD9S
+  │ oHpb-pqOpTyMy4XPKVTvSgT5sANOPAKipiNY38jSCupqkNiUGVucdR
+  │ nlzfy7jKfW9F1LUqT5hUORUkKds6pte8QkwHpwbVRce1ymkOgpa8Hp
+  │ BMPfwqXb7Zx05Id83hN8gTzVQXrV_rDMrVGmIhJVOjCh7L6oLwRTpY
+  │ uqMmu_xk_6K4NE0cFCWiKHUm0BUSs6ZAJjtIblNhaPKr_ZXn0laYfp
+  │ K9p5HZFarV3ClONGxHWS1vR2Tw"}
+  └
+  prepare   wait   dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  10ms      8ms    10ms         12ms            21ms            357ms            7ms        3ms       431ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 1 points = 1'
+  │ '******* User login Tests current points = 1'
+  └
+
+↳ 2. instructor1 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 330ms time ★ 384B↑ 1.28kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 71B
+  │ { 
+  │ 	"username": "instructor1@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 959B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6Imluc
+  │ 3RydWN0b3IxIiwibmFtZSI6Imluc3RydWN0b3IxQG9zdS5jb20iLCJ
+  │ waWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvM
+  │ TA0OGYwMTE5OTRkMjM2N2I1NzI3ZGViN2NkYjM1NGI_cz00ODAmcj1
+  │ wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhc
+  │ nMlMkZpbi5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMTo
+  │ yNzoyNC4wMTJaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUyc
+  │ GVpdnVvZS51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFV
+  │ na0dXRmJQYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxM
+  │ GRkN2E5NjllYzAxZTU1NjJlY2MiLCJpYXQiOjE3NDkzNDYwNDQsImV
+  │ 4cCI6MTc0OTM4MjA0NH0.HdXVRwbxXnIo8yp30iruhpQh-s3nNOtQo
+  │ e78F3cd5z6sgd-baqynbjtBkkZmd9xqaj7k7CFpwuyuxeRoUcjesWv
+  │ gbWVBEJAlVek1LmBMlgv0XU-KGAh2RueKz7x-Jvip4X6_0q-IK-JdU
+  │ A0jfD321U-iobEF6T_TmtTLXxPOBo3etPRcGFitOj_uTMkk2bvYb-G
+  │ rwt-h8qpwneasEgnTBuXB5FdvO2ysxY5QIuh30eV-9V8Gsum9LMBvY
+  │ mDrJTWQwLf1YrLv_VCP4Tr6I16NEpeSUNXLZzUvUzS2I_OedILCCeT
+  │ TUT93_arHZTd7KFKUzJdAKEKY3Y-JJj7UTA0e7g"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  882µs     331µs   (cache)      (cache)         (cache)         322ms            6ms        2ms       332ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 2 points = 1'
+  │ '******* User login Tests current points = 2'
+  └
+
+↳ 3. instructor2 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 278ms time ★ 384B↑ 1.28kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 71B
+  │ { 
+  │ 	"username": "instructor2@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 959B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6Imluc
+  │ 3RydWN0b3IyIiwibmFtZSI6Imluc3RydWN0b3IyQG9zdS5jb20iLCJ
+  │ waWN0dXJlIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvO
+  │ WE4MDA2NmVmODE3MDZlNDhiZWFmMjMxOGRlZGMwNjI_cz00ODAmcj1
+  │ wZyZkPWh0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhc
+  │ nMlMkZpbi5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMTo
+  │ yNzoyNC40MDRaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUyc
+  │ GVpdnVvZS51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFV
+  │ na0dXRmJQYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxM
+  │ GRlZmE5NjllYzAxZTU1NjJlY2YiLCJpYXQiOjE3NDkzNDYwNDQsImV
+  │ 4cCI6MTc0OTM4MjA0NH0.B1GGKbEVs4licwQ5bhvGiw_xZMiwCTyA4
+  │ zM0tNxX4QQAvbYWYgPuCY7-S_sAm8kYAFLDPEAK_G9XbYRbrg54TYk
+  │ I3UVMBTeqtkqtsquUjiiobI6KyZBgKd0t1RdjVpQKvF0Jkd-ZvqIl5
+  │ T-gYXFNgrtsd9f0newhdVZMcYhKDv-dV4I5zdzUAnX5lDcFd-R0-U-
+  │ _-E1F7HqWgYZ1le4dyI67-tL-Sxmn6_D5LmuoLFAFvAAQQ6MK84_1A
+  │ 7X1R7miVkVoaW2jjKb2H5KD6OqO1AjT0mE6XW2O4UZYUKss7ZBGAi_
+  │ YYxQ18NG6wd4fRUPfSz8tdjGoW5BiaN6yH0Dpqg"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       318µs   (cache)      (cache)         (cache)         274ms            2ms        828µs     279ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 3 points = 1'
+  │ '******* User login Tests current points = 3'
+  └
+
+↳ 4. student1 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 257ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student1@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQxIiwibmFtZSI6InN0dWRlbnQxQG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvMTJlNjM2M
+  │ DllMDNkY2RiNzM1NGQyNWM3MjJjZDllMmQ_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNC4
+  │ 3MDBaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMGY2OGE5N
+  │ jllYzAxZTU1NjJlZjciLCJpYXQiOjE3NDkzNDYwNDQsImV4cCI6MTc
+  │ 0OTM4MjA0NH0.WDO5X6EWhAcbkWpXS3w_Y9YgWmkZSqccemhBeOv7r
+  │ tOUgKWzZXF63CLKWvXL0WdPbw-e9QfO4MpXCZa88Hugda6LAQn4RP3
+  │ wdgHyLpgAM_-C6NC24MMaP50RB6L6rR4jKOP8l-jx4uVOeED2ZJGe5
+  │ 0dfFY4kvsrzOAHvrh32ubv5yS1S2_3ZPOobXMVzxxw6u3CeBxVna-y
+  │ PZTS28Fp5B1Hj8HRBPwjnMCvOJ-Cw3rOQyEB8ZKStDAviv_Q1srIqs
+  │ 1g43JkEUdzWkQ_nzdMvycqITKNxzc-bADeUruOtMhQrB82HdMXVRm5
+  │ 0g93tPNhjIqldvcxGBIWkn0Lyr7g-JA"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       269µs   (cache)      (cache)         (cache)         255ms            997µs      255µs     258ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 4 points = 1'
+  │ '******* User login Tests current points = 4'
+  └
+
+↳ 5. student2 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 270ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student2@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQyIiwibmFtZSI6InN0dWRlbnQyQG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvOWI0M2U4M
+  │ jM0ZDMyMWQyODg0NzdjYzk4NjY3MDk4MTc_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNC4
+  │ 5NzhaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMGY4OGY1M
+  │ jdjYmJhODhmNjZjYzUiLCJpYXQiOjE3NDkzNDYwNDQsImV4cCI6MTc
+  │ 0OTM4MjA0NH0.LjXUYWYK7PdhBHlFx9r86GFW60T2TzcIuCDRI7vND
+  │ C3yTJadBv8CCPFO2AzeX1LovP2K-NGlzaHZ9v7RDIf8hzE82vUqKMw
+  │ K7qt_1P2CT-NH5LXxA0fqIkg22fVP12rpyz39pYtT2omsuQbXb-aCf
+  │ M1eEkuWReMf2G_ocSQ0orcSM9hijxmme8vUd5bGw50dpUMItpVfBDm
+  │ rMVtp6LNLn0dJYZwEPhXAHi24II0rwVsW1hQpQVKgObhnUhIQAUFlB
+  │ mXieuLQK4xWiF9opbBv1ADQAM8ExWg2v6IYCIzPRgchWMKbc7WVBfW
+  │ XWSMolzxuhVbrxz8N02CSiMT4-Aq-JQ"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  822µs     325µs   (cache)      (cache)         (cache)         263ms            5ms        918µs     270ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 5 points = 1'
+  │ '******* User login Tests current points = 5'
+  └
+
+↳ 6. student3 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 288ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student3@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQzIiwibmFtZSI6InN0dWRlbnQzQG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvMzY1OWUwO
+  │ WFkYTU1YWYyYWFhNjdiOGIwNWVjZTJlZTc_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNS4
+  │ yODVaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMTE0ZWY1M
+  │ jdjYmJhODhmNjZjZjEiLCJpYXQiOjE3NDkzNDYwNDUsImV4cCI6MTc
+  │ 0OTM4MjA0NX0.Mv5TL4OjWJ0cx9_mvBwQMjJ40bmGqqk_qm-SGfM8y
+  │ 5w4n62YfWecgMHaSXivH2TpFhnVWolUGRoPLn4GvcXbBnmjrYorTjP
+  │ mrqAdSwZvzj0x1A4XU0GqQ7KjwKzrP4JLUzsujSO58ptMCzWtbqGy_
+  │ dQtcS5-dl5RljmaUWUc1I1uwkBDb2ieBNjkSsZBN3vKDaPZIodPrxh
+  │ Ul1JrLa96r2_TS2SldPZHkr0yPcxnW4CeJgoMY17-ynnH8ZaeM3VE7
+  │ WFwSluWngV_Mb2JMrocHHRPzrc1orHX_YKZJedMlfV2Cyrq4WL6lq9
+  │ sJZghLNoALBkNZADhY9tBFV8dq-VAhg"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       380µs   (cache)      (cache)         (cache)         282ms            4ms        1ms       290ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 6 points = 1'
+  │ '******* User login Tests current points = 6'
+  └
+
+↳ 7. student4 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 251ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student4@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQ0IiwibmFtZSI6InN0dWRlbnQ0QG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvYmNjZTE3Y
+  │ jNhYWFhMTlkODc4YzJkMmU1NTQ0MWE2YTE_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNS4
+  │ 1ODZaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMTE2Y2E5N
+  │ jllYzAxZTU1NjJmMjkiLCJpYXQiOjE3NDkzNDYwNDUsImV4cCI6MTc
+  │ 0OTM4MjA0NX0.dcJLbV8KWoHmoQHb9U11lIZWFzbyqEsriBKe8ZaAZ
+  │ KRYmefIb6On7u1EjvMCQiljmvr-02uM2bTKgbIzXNg6MPCWTWp9MvT
+  │ HJQPgR0tCYpSY3SFvKKO-Knxedf_6d6T57dzBSL5ddtnWf8Xo-rY6O
+  │ BQjNz12pO_DaRby64AebHF9lQ69-1dOdP_jPUplSxuP5LtMp29KS1d
+  │ H1MK14Ra06YboHDCk3eQZf5H-07dFkPkUCmXTptw5Z1EBR7RcMnSEM
+  │ CNThJU0qUJKmxMMwONAvty1C5uC5syZspkoavQvGAkB-ZC4UN4LBhS
+  │ Un-FSaAEyleVSwADnJrl8Y1xWb1Pm4g"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       870µs   (cache)      (cache)         (cache)         245ms            4ms        1ms       253ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 7 points = 1'
+  │ '******* User login Tests current points = 7'
+  └
+
+↳ 8. student5 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 250ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student5@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQ1IiwibmFtZSI6InN0dWRlbnQ1QG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvMmY2NDY1M
+  │ 2NlOGE0MTRlNTVkY2M2MDhmMmQzMGM1ZmE_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNS4
+  │ 4NjNaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMTFiNmY1M
+  │ jdjYmJhODhmNjZjZmUiLCJpYXQiOjE3NDkzNDYwNDUsImV4cCI6MTc
+  │ 0OTM4MjA0NX0.UdEKwQwBo-Gcd-UR6vcneH-pkNqYYfQp4lDIOY01z
+  │ lku0xtx6IgRrlHRQjpXiJopUf9Tsa7n-j--04YRKIYumXdvqEpNFdY
+  │ EUz7YDhObxPIA4mWIZ4FpYm2UziS6j37KBjDQq8iq0rtGmcoHJauir
+  │ NDO8BiDAJPo-xaQ-WNfdnRZ4QBSKSbdKk9yCTRGxDfObJ8e3euAvg4
+  │ upn1R4nSnt2aBlbouJ6YFKY6NBZn_T8b2_fo2dY84muV4y-SWmbtfY
+  │ ha-a4xcEDpPZRrcRgNXTr-jKGc081avStb1AJm_bnxFkGgzShyiJY7
+  │ ROh9iOa3E2Q0TlOzJl1LjQI8blzhkKQ"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  2ms       424µs   (cache)      (cache)         (cache)         248ms            1ms        391µs     252ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 8 points = 1'
+  │ '******* User login Tests current points = 8'
+  └
+
+↳ 9. student6 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  200 OK ★ 333ms time ★ 381B↑ 1.27kB↓ size ★ 9↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 68B
+  │ { 
+  │ 	"username": "student6@osu.com",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 951B
+  │ {"token":"eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6
+  │ ImFLZGZBZmlZc21YbkJnMXZZdEpyYyJ9.eyJuaWNrbmFtZSI6InN0d
+  │ WRlbnQ2IiwibmFtZSI6InN0dWRlbnQ2QG9zdS5jb20iLCJwaWN0dXJ
+  │ lIjoiaHR0cHM6Ly9zLmdyYXZhdGFyLmNvbS9hdmF0YXIvMDAzNWI0M
+  │ jYwNWNhYWY0ZDU3OGY2ODdmMDFkOWRjNWU_cz00ODAmcj1wZyZkPWh
+  │ 0dHBzJTNBJTJGJTJGY2RuLmF1dGgwLmNvbSUyRmF2YXRhcnMlMkZzd
+  │ C5wbmciLCJ1cGRhdGVkX2F0IjoiMjAyNS0wNi0wOFQwMToyNzoyNi4
+  │ xOTVaIiwiaXNzIjoiaHR0cHM6Ly9kZXYtdXNtanV4cmUycGVpdnVvZ
+  │ S51cy5hdXRoMC5jb20vIiwiYXVkIjoidVBXWkhtQUhqNFVna0dXRmJ
+  │ QYmdmM3FiMllWc2ZMNloiLCJzdWIiOiJhdXRoMHw2ODQxMTFkNGY1M
+  │ jdjYmJhODhmNjZkMDQiLCJpYXQiOjE3NDkzNDYwNDYsImV4cCI6MTc
+  │ 0OTM4MjA0Nn0.cMgPmeSxyCu8SqB2_pPeB1jomj-qWLKUXxaow4h8u
+  │ aEDD4WEG5CM8JWjlEnhUCl6ZrBLLLxiAmcY6ccEx4Jql8Agcpr-wWk
+  │ dQa3lCZGTWAka-2MKPqBuY2MuNzLQcpDeYRiSHgZ47FspynQd7-pcR
+  │ OpApj1XmFmrk71Nuc9LYpN6sUi9Bb5ztcVzb5VBUu2hbgmvUww0IPB
+  │ S4RFZFHeI0-Lh1zn6cjBcrfIbAuJrc97Rb2ykmsZD6pMy0rwh1BEAv
+  │ LverXAUYz91TIhCnE0JNYBBnElIBzZtbXfmP5NSQJIHRXGLb_v7PN0
+  │ H181fl8wAYqfqkg-vLBIAxIq9NUjy0g"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       692µs   (cache)      (cache)         (cache)         324ms            6ms        3ms       336ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  content is valid (0.75 pts)
+  ┌
+  │ '******* User login Test 9 points = 1'
+  │ '******* User login Tests current points = 9'
+  └
+
+↳ 10. invalid body 400 (0.5 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  400 Bad Request ★ 47ms time ★ 382B↑ 317B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 69B
+  │ { 
+  │ 	"username": "student6@osu.com",
+  │ 	"passwordd": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 46B
+  │ {"Error":"Username and password are required"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       506µs   (cache)      (cache)         (cache)         44ms             1ms        81µs      48ms  
+
+  ✓  400 status code (0.25 pts)
+  1. 400 error message (0.25 pts)
+  ┌
+  │ '******* User login Test 10 points = 0.25'
+  │ '******* User login Tests current points = 9.25'
+  └
+
+↳ 11. invalid creds 401 (0.5 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/login  
+  401 Unauthorized ★ 241ms time ★ 382B↑ 303B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 69B
+  │ { 
+  │ 	"username":  "invalid_username",
+  │ 	"password": "abcde!12345@"
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"Error":"Invalid credentials"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       269µs   (cache)      (cache)         (cache)         235ms            4ms        98µs      241ms 
+
+  ✓  401 status code (0.25 pts)
+  2. 401 error message (0.25 pts)
+  ┌
+  │ '******* User login Test 11 points = 0.25'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'User login Tests total points = 9.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 2 all users (10 pts)
+↳ 1. all users 200 (9 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users  
+  200 OK ★ 266ms time ★ 1.21kB↑ 1.04kB↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 725B
+  │ [{"id":5631671361601536,"sub":"auth0|68410defa969ec01e
+  │ 5562ecf","role":"instructor"},{"id":5635008819625984,"
+  │ sub":"auth0|684111b6f527cbba88f66cfe","role":"student"
+  │ },{"id":5636645067948032,"sub":"auth0|68410ce9a969ec01
+  │ e5562eb3","role":"admin"},{"id":5638358357245952,"sub"
+  │ :"auth0|6841114ef527cbba88f66cf1","role":"student"},{"
+  │ id":5646488461901824,"sub":"auth0|68410dd7a969ec01e556
+  │ 2ecc","role":"instructor"},{"id":5669152601669632,"sub
+  │ ":"auth0|6841116ca969ec01e5562f29","role":"student"},{
+  │ "id":5702893864747008,"sub":"auth0|68410f68a969ec01e55
+  │ 62ef7","role":"student"},{"id":5704568633556992,"sub":
+  │ "auth0|68410f88f527cbba88f66cc5","role":"student"},{"i
+  │ d":5735810494103552,"sub":"auth0|684111d4f527cbba88f66
+  │ d04","role":"student"}]
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  50ms      291µs   (cache)      (cache)         (cache)         263ms            1ms        234µs     316ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  9 users(0.75 pts)
+  ✓  Each has 3 properties (2 pts)
+  ✓  sub value of admin in database matches sub in jwt (1 pts)
+  ✓  sub values of instructors in database matches sub in jwts (1 pts)
+  ✓  sub values of students in database matches sub in jwts (1 pts)
+  ┌
+  │ '******* All Users Test 1 points = 9'
+  └
+
+↳ 2. all users 401 (0.5 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users  
+  401 Unauthorized ★ 47ms time ★ 294B↑ 296B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 24B
+  │ {"Error":"Unauthorized"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  44ms      134µs   (cache)      (cache)         (cache)         45ms             989µs      20µs      91ms  
+
+  ✓  401 status code (0.25 pts)
+  ✓  403 error message (0.25 pts)
+  ┌
+  │ '******* All Users Test 2 points = 0.5'
+  │ '******* All Users Tests Total points = 9.5'
+  └
+
+↳ 3. all users 403 (0.5 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users  
+  403 Forbidden ★ 136ms time ★ 1.23kB↑ 378B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 54B
+  │ {"Error":"You don't have permission on this resource"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  48ms      223µs   (cache)      (cache)         (cache)         130ms            4ms        1ms       185ms 
+
+  ✓  403 status code (0.25 pts)
+  ✓  403 error message (0.25 pts)
+  ┌
+  │ '******* All Users Test 3 points = 0.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'All Users Tests Total points = 10'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 3a get a user - basic (4 pts)
+↳ 1. get admin1 200 (1 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5636645067948032  
+  200 OK ★ 140ms time ★ 1.23kB↑ 394B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 77B
+  │ {"id":5636645067948032,"sub":"auth0|68410ce9a969ec01e5
+  │ 562eb3","role":"admin"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       247µs   (cache)      (cache)         (cache)         137ms            1ms        402µs     141ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  admin user has either 3 or 4 properties (0.75 pts)
+  ┌
+  │ '******* Get a user - basic Test 1 points = 1'
+  │ '******* Get a user - basic Tests current points = 1'
+  └
+
+↳ 2. get instructor1 200 (1 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5646488461901824  
+  200 OK ★ 184ms time ★ 1.24kB↑ 412B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 95B
+  │ {"id":5646488461901824,"sub":"auth0|68410dd7a969ec01e5
+  │ 562ecc","role":"instructor","courses":[]}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  927µs     217µs   (cache)      (cache)         (cache)         179ms            3ms        846µs     185ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  an instructor has either 4 or 5 properties (0.75 pts)
+  ┌
+  │ '******* Get a user - basic Test 2 points = 1'
+  │ '******* Users - Basic Tests current points = 2'
+  └
+
+↳ 3. get student1 200 (1 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008  
+  200 OK ★ 199ms time ★ 1.23kB↑ 409B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 92B
+  │ {"id":5702893864747008,"sub":"auth0|68410f68a969ec01e5
+  │ 562ef7","role":"student","courses":[]}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       381µs   (cache)      (cache)         (cache)         194ms            3ms        950µs     201ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  a student has either 4 or 5 properties (0.75 pts)
+  ┌
+  │ '******* Get a user - basic Test 3 points = 1'
+  │ '******* Users - Basic Tests current points = 3'
+  └
+
+↳ 4. get a user 401 (0.5 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008  
+  401 Unauthorized ★ 52ms time ★ 306B↑ 296B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 24B
+  │ {"Error":"Unauthorized"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       293µs   (cache)      (cache)         (cache)         49ms             2ms        38µs      52ms  
+
+  ✓  401 status code (0.25 pts)
+  ✓  403 error message (0.25 pts)
+  ┌
+  │ '******* Get a user - basic Test 4 points = 0.5'
+  │ '******* Users - Basic Tests current points = 3.5'
+  └
+
+↳ 5. get a user 403 (0.5 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008  
+  403 Forbidden ★ 148ms time ★ 1.23kB↑ 378B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 54B
+  │ {"Error":"You don't have permission on this resource"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  978µs     231µs   (cache)      (cache)         (cache)         145ms            1ms        470µs     148ms 
+
+  ✓  403 status code (0.25 pts)
+  ✓  403 error message (0.25 pts)
+  ┌
+  │ '******* Get a user - basic Test 4 points = 0.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Users - Basic Tests Total points = 4'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 3b, 4 create avatar (1 + 3 pts)
+↳ 1. create/update avatar student_1 200 (1 pts)
+  ┌
+  │ 'Form param `file`, file load error: "/C:/Users/nauman
+  │ /Documents/GitHub/cs493_redev/code/a6-portfolio/files/
+  │ student1.png", no such file'
+  └
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 46ms time ★ 1.26kB↑ 266B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  832µs     191µs   (cache)      (cache)         (cache)         43ms             1ms        24µs      45ms  
+
+  3. 200 status code (0.25 pts)
+  4. the response has the avatar_url (0.75 pts)
+  ┌
+  │ '******* Avatar Create Test 1 points = 0'
+  └
+
+↳ 2. student1 has avatar_url (1 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008  
+  200 OK ★ 202ms time ★ 1.23kB↑ 409B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 92B
+  │ {"id":5702893864747008,"sub":"auth0|68410f68a969ec01e5
+  │ 562ef7","role":"student","courses":[]}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  910µs     212µs   (cache)      (cache)         (cache)         196ms            4ms        1ms       203ms 
+
+  ✓  200 status code (0.25 pts)
+  5. student1 has an avatar URL (0.75 pts)
+  ┌
+  │ '******* Get a user - avatar url Test 2 points = 0.25'
+  │ '******* Get a user - avatar url Tests current points 
+  │ = 0.25'
+  └
+
+↳ 3. update avatar student_1 200 (1 pts)
+  ┌
+  │ 'Form param `file`, file load error: "/C:/Users/nauman
+  │ /Documents/GitHub/cs493_redev/code/a6-portfolio/files/
+  │ student1.png", no such file'
+  └
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 46ms time ★ 1.26kB↑ 266B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       324µs   (cache)      (cache)         (cache)         42ms             2ms        45µs      46ms  
+
+  6. 200 status code (0.25 pts)
+  7. the response has the avatar_url (0.75 pts)
+  ┌
+  │ '******* Avatar Create Test 3 points = 0'
+  │ '******* Avatar Create Tests current points = 0'
+  └
+
+↳ 4. post avatar 400 (0.25 pt)
+  ┌
+  │ 'Form param `file_name`, file load error: "/C:/Users/n
+  │ auman/Documents/GitHub/cs493_redev/code/a6-portfolio/f
+  │ iles/student1.png", no such file'
+  └
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 50ms time ★ 1.26kB↑ 266B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       304µs   (cache)      (cache)         (cache)         47ms             1ms        32µs      51ms  
+
+  8. 400 status code (0.15 pts)
+  9. error message is correct (0.10 pts)
+  ┌
+  │ '******* Avatar Create Test 4 points = 0'
+  │ '******* Avatar Create Tests current points = 0'
+  └
+
+↳ 5. post avatar 401 (0.25 pt)
+  ┌
+  │ 'Form param `file`, file load error: "/C:/Users/nauman
+  │ /Documents/GitHub/cs493_redev/code/a6-portfolio/files/
+  │ student1.png", no such file'
+  └
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 49ms time ★ 333B↑ 266B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       278µs   (cache)      (cache)         (cache)         45ms             1ms        40µs      49ms  
+
+ 10. 401 status code (0.15 pts)
+ 11. error message is correct (0.1 pts)
+  ┌
+  │ '******* Avatar Create Test 5 points = 0'
+  │ '******* Avatar Create Tests current points = 0'
+  └
+
+↳ 6. post avatar 403 (0.5 pt)
+  ┌
+  │ 'Form param `file`, file load error: "/C:/Users/nauman
+  │ /Documents/GitHub/cs493_redev/code/a6-portfolio/files/
+  │ student1.png", no such file'
+  └
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 48ms time ★ 1.26kB↑ 266B↓ size ★ 9↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       301µs   (cache)      (cache)         (cache)         45ms             1ms        45µs      48ms  
+
+ 12. 403 status code (0.25 pts)
+ 13. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Create Test 6 points = 0'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Avatar Create Tests Total points = 0'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 5. get user's avatar (1.75 + 2.25 pts)
+↳ 1. get avatar 200 (0.25 + 2.25 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 48ms time ★ 1.24kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       276µs   (cache)      (cache)         (cache)         45ms             1ms        39µs      48ms  
+
+ 14. 200 status code (0.25 pts)
+  ┌
+  │ '******* Avatar Get Test 1 points = 0'
+  │ '******* Avatar Get Tests current points = 0'
+  └
+
+↳ 2. get avatar 401 (0.5 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 47ms time ★ 313B↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       264µs   (cache)      (cache)         (cache)         44ms             1ms        33µs      47ms  
+
+ 15. 401 status code (0.25 pts)
+ 16. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Get Test 2 points = 0'
+  │ '******* Avatar Get Tests current points = 0'
+  └
+
+↳ 3. get avatar 403 (0.5 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 46ms time ★ 1.24kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       276µs   (cache)      (cache)         (cache)         43ms             1ms        32µs      46ms  
+
+ 17. 403 status code (0.25 pts)
+ 18. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Get Test 3 points = 0'
+  │ '******* Avatar Get Tests current points = 0'
+  └
+
+↳ 4. get avatar 404 (0.5 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5631671361601536/avatar  
+  404 Not Found ★ 50ms time ★ 1.25kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       278µs   (cache)      (cache)         (cache)         47ms             1ms        35µs      50ms  
+
+  ✓  404 status code (0.25 pts)
+ 19. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Get Test 4 points = 0.25'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Avatar Get Tests Total points = 0.25'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 3b, 6 delete avatar (1 + 3 pts)
+↳ 1. delete avatar 401 (0.5 pt)
+  DELETE https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 43ms time ★ 316B↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       247µs   (cache)      (cache)         (cache)         41ms             805µs      16µs      43ms  
+
+ 20. 401 status code (0.25 pts)
+ 21. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Delete Test 1 points = 0'
+  │ '******* Avatar Delete Tests current points = 0'
+  └
+
+↳ 2. delete avatar 204 (1 pt)
+  DELETE https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 49ms time ★ 1.24kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       171µs   (cache)      (cache)         (cache)         47ms             827µs      19µs      49ms  
+
+ 22. 204 status code (1 pts)
+  ┌
+  │ '******* Avatar Delete Test 2 points = 0'
+  │ '******* Avatar Delete Tests current points = 0'
+  └
+
+↳ 3. student1 no avatar_url (1 pt)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008  
+  200 OK ★ 201ms time ★ 1.23kB↑ 409B↓ size ★ 8↑ 8↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 92B
+  │ {"id":5702893864747008,"sub":"auth0|68410f68a969ec01e5
+  │ 562ef7","role":"student","courses":[]}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  643µs     145µs   (cache)      (cache)         (cache)         197ms            2ms        1ms       203ms 
+
+  ✓  200 status code (0.25 pts)
+  ✓  student1 no longer has an avatar URL (0.75 pts)
+  ┌
+  │ '******* Get a user - avatar url Test 2 points = 1'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Get a user - avatar url Tests Total points = 1.25'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+↳ 4. delete avatar 403 (0.5 pt)
+  DELETE https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 49ms time ★ 1.24kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       279µs   (cache)      (cache)         (cache)         46ms             1ms        39µs      49ms  
+
+ 23. 403 status code (0.25 pts)
+ 24. error message is correct (0.25 pts)
+  ┌
+  │ '******* Avatar Delete Test 4 points = 0'
+  │ '******* Avatar Delete Tests current points = 0'
+  └
+
+↳ 5. delete avatar 404 (1 pt)
+  DELETE https://cs493-uvarovd-hw6-go.uc.r.appspot.com/users/5702893864747008/avatar  
+  404 Not Found ★ 45ms time ★ 1.24kB↑ 266B↓ size ★ 8↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ text/plain ★ text ★ plain ★ utf8 ★ 18B
+  │ 404 page not found
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       250µs   (cache)      (cache)         (cache)         43ms             1ms        28µs      45ms  
+
+  ✓  404 status code (0.5 pts)
+ 25. error message is correct (0.5 pts)
+  ┌
+  │ '******* Avatar Delete Test 5 points = 0.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Avatar Delete Tests Total points = 0.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 7. create a course (10 pts)
+↳ 1. create 1st course (2 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 142ms time ★ 1.41kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 146B
+  │ {
+  │   "subject": "CS",
+  │   "number": 493,
+  │   "title": "Cloud Application Development",
+  │   "term": "fall-24",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  46ms      221µs   (cache)      (cache)         (cache)         136ms            5ms        241µs     188ms 
+
+ 26. status code is 201 (0.25 pts)
+ 27. content is valid (1.5 pts)
+ 28. self URL is valid (0.25 pts)
+  ┌
+  │ '******* Create a course Test 1 points = 0'
+  │ '******* Create a course Tests current points = 0'
+  └
+
+↳ 2. create course 400 missing prop (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 169ms time ★ 1.39kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 124B
+  │ {
+  │   "subject": "CS",
+  │   "number": 493,
+  │   "title": "Cloud Application Development",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  49ms      399µs   (cache)      (cache)         (cache)         164ms            3ms        62µs      217ms 
+
+ 29. 400 status code (0.5 pts)
+ 30. 400 error message (0.25 pts)
+  ✓  The response content type is application.json (0.25 pts)
+  ┌
+  │ '******* Create a course Test 2 points = 0.25'
+  │ '******* Create a course Tests current points = 0.25'
+  └
+
+↳ 3. create course 400 invalid instructor (2 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 145ms time ★ 1.41kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 146B
+  │ {
+  │   "subject": "CS",
+  │   "number": 493,
+  │   "title": "Cloud Application Development",
+  │   "term": "fall-24",
+  │   "instructor_id": 5702893864747008
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  47ms      271µs   (cache)      (cache)         (cache)         143ms            870µs      28µs      192ms 
+
+ 31. 400 status code (1.5 pts)
+ 32. 400 error message (0.25 pts)
+  ✓  The response content type is application.json (0.25 pts)
+  ┌
+  │ '******* Create a course Test 3 points = 0.25'
+  │ '******* Create a course Tests current points = 0.5'
+  └
+
+↳ 4. create course 401 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  401 Unauthorized ★ 48ms time ★ 469B↑ 296B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 124B
+  │ {
+  │   "subject": "CS",
+  │   "number": 493,
+  │   "title": "Cloud Application Development",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 24B
+  │ {"Error":"Unauthorized"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  44ms      152µs   (cache)      (cache)         (cache)         46ms             974µs      20µs      92ms  
+
+  ✓  401 status code (0.5 pts)
+  ✓  401 error message (0.5 pts)
+  ┌
+  │ '******* Create a course Test 4 points = 1'
+  │ '******* Create a course Tests current points = 1.5'
+  └
+
+↳ 5. create course 403 (1 pt)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  403 Forbidden ★ 136ms time ★ 1.43kB↑ 378B↓ size ★ 10↑ 8↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 146B
+  │ {
+  │   "subject": "CS",
+  │   "number": 493,
+  │   "title": "Cloud Application Development",
+  │   "term": "fall-24",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 54B
+  │ {"Error":"You don't have permission on this resource"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  45ms      223µs   (cache)      (cache)         (cache)         132ms            2ms        411µs     181ms 
+
+  ✓  403 status code (0.5 pts)
+  ✓  403 error message (0.5 pts)
+  ┌
+  │ '******* Create a course Test 5 points = 1'
+  │ '******* Create a course Tests current points = 2.5'
+  └
+
+↳ 6. create 2nd course (1 pts)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 147ms time ★ 1.41kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 139B
+  │ {
+  │   "subject": "CS",
+  │   "number": 492,
+  │   "title": "Mobile App Development",
+  │   "term": "fall-24",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  45ms      300µs   (cache)      (cache)         (cache)         143ms            2ms        43µs      191ms 
+
+ 33. status code is 201 (0.1 pts)
+ 34. content is valid (0.8 pts)
+ 35. self URL is valid (0.1 pts)
+  ┌
+  │ '******* Create a course Test 6 points = 0'
+  │ '******* Create a course Tests current points = 2.5'
+  └
+
+↳ 7. create 3rd course (1 pts)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 170ms time ★ 1.41kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 138B
+  │ {
+  │   "subject": "ECE",
+  │   "number": 271,
+  │   "title": "Digital Logic Design",
+  │   "term": "fall-24",
+  │   "instructor_id": 5646488461901824
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  51ms      318µs   (cache)      (cache)         (cache)         165ms            3ms        83µs      220ms 
+
+ 36. status code is 201 (0.1 pts)
+ 37. content is valid (0.8 pts)
+ 38. self URL is valid (0.1 pts)
+  ┌
+  │ '******* Create a course Test 7 points = 0'
+  │ '******* Create a course Tests current points = 2.5'
+  └
+
+↳ 8. create 4th course (1 pts)
+  POST https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 145ms time ★ 1.4kB↑ 306B↓ size ★ 10↑ 6↓ headers ★ 0 cookies
+  ┌ ↑ raw ★ 133B
+  │ {
+  │   "subject": "AI",
+  │   "number": 534,
+  │   "title": "Machine Learning",
+  │   "term": "fall-24",
+  │   "instructor_id": 5631671361601536
+  │ }
+  └ 
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  49ms      395µs   (cache)      (cache)         (cache)         140ms            3ms        92µs      194ms 
+
+ 39. status code is 201 (0.1 pts)
+ 40. content is valid (0.8 pts)
+ 41. self URL is valid (0.1 pts)
+  ┌
+  │ '******* Create a course Test 8 points = 0'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Create a course Tests Total points = 2.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 8. get all courses (10 pts)
+↳ 1. get courses page 1 (7.5 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses  
+  501 Not Implemented ★ 44ms time ★ 256B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  48ms      165µs   (cache)      (cache)         (cache)         42ms             747µs      16µs      92ms  
+
+ 42. 200 status code
+  ✓  The response content type is application.json
+ 43. Exactly 3 courses on the page
+ 44. Every course has all the required properties
+ 45. The next link is correct
+ 46. The courses are sorted by subject
+  ┌
+  │ '******* Get all courses Test 1 points = 0.25'
+  │ '******* Get all courses Tests current points = 0.25'
+  └
+
+↳ 2. get courses 2nd page (2.5 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses?offset=3&limit=3  
+  501 Not Implemented ★ 51ms time ★ 273B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  46ms      153µs   (cache)      (cache)         (cache)         49ms             939µs      21µs      96ms  
+
+ 47. 200 status code
+  ✓  The response content type is application.json
+ 48. At least 1 course on the page
+ 49. Every course has all the required properties
+  ┌
+  │ '******* Get all courses Test 2 points = 0.25'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Get all courses Tests Total points = 0.5'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+❏ 9. get a course (5 pts)
+↳ 1. get course 1 200 (1 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses/null  
+  501 Not Implemented ★ 46ms time ★ 261B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  815µs     181µs   (cache)      (cache)         (cache)         44ms             1ms        24µs      46ms  
+
+ 50. status code is 200 (0.05 pts)
+ 51. content is valid (0.75 pts)
+ 52. self URL is valid (0.15 pts)
+  ✓  The response content type is application.json (0.05 pts)
+  ┌
+  │ '******* Get a course Test 1 points = 0.05'
+  │ '******* Get a course Tests current points = 0.05'
+  └
+
+↳ 2. get course 2 200 (1 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses/null  
+  501 Not Implemented ★ 51ms time ★ 261B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  907µs     208µs   (cache)      (cache)         (cache)         48ms             1ms        25µs      50ms  
+
+ 53. content is valid (0.75 pts)
+ 54. self URL is valid (0.25 pts)
+  ┌
+  │ '******* Get a course Test 4 points = 0'
+  │ '******* Get a course Tests current points = 0.05'
+  └
+
+↳ 3. get course 3 200 (1 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses/null  
+  501 Not Implemented ★ 44ms time ★ 261B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       227µs   (cache)      (cache)         (cache)         42ms             1ms        25µs      45ms  
+
+ 55. content is valid (0.75 pts)
+ 56. self URL is valid (0.25 pts)
+  ┌
+  │ '******* Get a course Test 3 points = 0'
+  │ '******* Get a course Tests current points = 0.05'
+  └
+
+↳ 4. get course 4 200 (1 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses/null  
+  501 Not Implemented ★ 49ms time ★ 261B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  1ms       266µs   (cache)      (cache)         (cache)         47ms             1ms        31µs      49ms  
+
+ 57. content is valid (0.75 pts)
+ 58. self URL is valid (0.25 pts)
+  ┌
+  │ '******* Get a course Test 4 points = 0'
+  │ '******* Get a course Tests current points = 0.05'
+  └
+
+↳ 5. get a course 404 (1 pts)
+  GET https://cs493-uvarovd-hw6-go.uc.r.appspot.com/courses/1  
+  501 Not Implemented ★ 46ms time ★ 258B↑ 306B↓ size ★ 7↑ 6↓ headers ★ 0 cookies
+  ┌ ↓ application/json ★ text ★ json ★ utf8 ★ 31B
+  │ {"error":"Not implemented yet"}
+  └
+  prepare   wait    dns-lookup   tcp-handshake   ssl-handshake   transfer-start   download   process   total 
+  930µs     216µs   (cache)      (cache)         (cache)         44ms             878µs      18µs      46ms  
+
+ 59. status code is 404 (0.5 pts)
+ 60. content is valid (0.5 pts)
+  ┌
+  │ '******* Get a course Test 5 points = 0'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ 'Get a course Tests Total points = 0.05'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  │ '1. user login          = 9.5'
+  │ '2. all users           = 10'
+  │ '3a get a user - basic  = 4'
+  │ '3b get a user - avurl  = 1.25'
+  │ '4 create avatar        = 0'
+  │ "5 get user's avatar   = 0.25"
+  │ '6 delete avatar        = 0.5'
+  │ '7 create a course      = 2.5'
+  │ '8 get courses          = 0.5'
+  │ '9 get a course         = 0.05'
+  │ '+++++++++++++++++++++++++++++++++++++++++'
+  └
+
+┌─────────────────────────┬─────────────────────┬────────────────────┐
+│                         │            executed │             failed │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              iterations │                   1 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│                requests │                  49 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│            test-scripts │                  98 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│      prerequest-scripts │                  49 │                  0 │
+├─────────────────────────┼─────────────────────┼────────────────────┤
+│              assertions │                 114 │                 60 │
+├─────────────────────────┴─────────────────────┴────────────────────┤
+│ total run duration: 8.4s                                           │
+├────────────────────────────────────────────────────────────────────┤
+│ total data received: 10.69kB (approx)                              │
+├────────────────────────────────────────────────────────────────────┤
+│ average response time: 134ms [min: 43ms, max: 418ms, s.d.: 100ms]  │
+├────────────────────────────────────────────────────────────────────┤
+│ average DNS lookup time: 10ms [min: 10ms, max: 10ms, s.d.: 0µs]    │
+├────────────────────────────────────────────────────────────────────┤
+│ average first byte time: 130ms [min: 41ms, max: 357ms, s.d.: 95ms] │
+└────────────────────────────────────────────────────────────────────┘
+
+[31m   # [39m[31m failure        [39m[31m detail                                                                                   [39m
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 01.  AssertionError  400 error message (0.25 pts)                                                             
+                      expected 'Username and password are required' to equal 'The request body is invalid'     
+                      at assertion:1 in test-script                                                            
+                      inside "1 user login (10 pts) / 10. invalid body 400 (0.5 pt)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 02.  AssertionError  401 error message (0.25 pts)                                                             
+                      expected 'Invalid credentials' to equal 'Unauthorized'                                   
+                      at assertion:1 in test-script                                                            
+                      inside "1 user login (10 pts) / 11. invalid creds 401 (0.5 pt)"                          
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 03.  AssertionError  200 status code (0.25 pts)                                                               
+                      expected response to have status code 200 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 1. create/update avatar student_1 200 (1 pts)" 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 04.  JSONError       the response has the avatar_url (0.75 pts)                                               
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 1. create/update avatar student_1 200 (1 pts)" 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 05.  AssertionError  student1 has an avatar URL (0.75 pts)                                                    
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 2. student1 has avatar_url (1 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 06.  AssertionError  200 status code (0.25 pts)                                                               
+                      expected response to have status code 200 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 3. update avatar student_1 200 (1 pts)"        
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 07.  JSONError       the response has the avatar_url (0.75 pts)                                               
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 3. update avatar student_1 200 (1 pts)"        
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 08.  AssertionError  400 status code (0.15 pts)                                                               
+                      expected response to have status code 400 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 4. post avatar 400 (0.25 pt)"                  
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 09.  JSONError       error message is correct (0.10 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 4. post avatar 400 (0.25 pt)"                  
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 10.  AssertionError  401 status code (0.15 pts)                                                               
+                      expected response to have status code 401 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 5. post avatar 401 (0.25 pt)"                  
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 11.  JSONError       error message is correct (0.1 pts)                                                       
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 5. post avatar 401 (0.25 pt)"                  
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 12.  AssertionError  403 status code (0.25 pts)                                                               
+                      expected response to have status code 403 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 6. post avatar 403 (0.5 pt)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 13.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 4 create avatar (1 + 3 pts) / 6. post avatar 403 (0.5 pt)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 14.  AssertionError  200 status code (0.25 pts)                                                               
+                      expected response to have status code 200 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 1. get avatar 200 (0.25 + 2.25 pt)"     
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 15.  AssertionError  401 status code (0.25 pts)                                                               
+                      expected response to have status code 401 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 2. get avatar 401 (0.5 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 16.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 2. get avatar 401 (0.5 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 17.  AssertionError  403 status code (0.25 pts)                                                               
+                      expected response to have status code 403 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 3. get avatar 403 (0.5 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 18.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 3. get avatar 403 (0.5 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 19.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "5. get user's avatar (1.75 + 2.25 pts) / 4. get avatar 404 (0.5 pt)"             
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 20.  AssertionError  401 status code (0.25 pts)                                                               
+                      expected response to have status code 401 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 1. delete avatar 401 (0.5 pt)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 21.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 1. delete avatar 401 (0.5 pt)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 22.  AssertionError  204 status code (1 pts)                                                                  
+                      expected response to have status code 204 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 2. delete avatar 204 (1 pt)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 23.  AssertionError  403 status code (0.25 pts)                                                               
+                      expected response to have status code 403 but got 404                                    
+                      at assertion:0 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 4. delete avatar 403 (0.5 pt)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 24.  JSONError       error message is correct (0.25 pts)                                                      
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 4. delete avatar 403 (0.5 pt)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 25.  JSONError       error message is correct (0.5 pts)                                                       
+                      Unexpected token 'p' at 1:5                                                              
+                      404 page not found                                                                       
+                          ^                                                                                    
+                      at assertion:1 in test-script                                                            
+                      inside "3b, 6 delete avatar (1 + 3 pts) / 5. delete avatar 404 (1 pt)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 26.  AssertionError  status code is 201 (0.25 pts)                                                            
+                      expected response to have status code 201 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 1. create 1st course (2 pt)"                       
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 27.  AssertionError  content is valid (1.5 pts)                                                               
+                      expected undefined to equal 'CS'                                                         
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 1. create 1st course (2 pt)"                       
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 28.  AssertionError  self URL is valid (0.25 pts)                                                             
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:2 in test-script                                                            
+                      inside "7. create a course (10 pts) / 1. create 1st course (2 pt)"                       
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 29.  AssertionError  400 status code (0.5 pts)                                                                
+                      expected response to have status code 400 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 2. create course 400 missing prop (1 pt)"          
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 30.  AssertionError  400 error message (0.25 pts)                                                             
+                      expected undefined to equal 'The request body is invalid'                                
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 2. create course 400 missing prop (1 pt)"          
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 31.  AssertionError  400 status code (1.5 pts)                                                                
+                      expected response to have status code 400 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 3. create course 400 invalid instructor (2 pt)"    
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 32.  AssertionError  400 error message (0.25 pts)                                                             
+                      expected undefined to equal 'The request body is invalid'                                
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 3. create course 400 invalid instructor (2 pt)"    
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 33.  AssertionError  status code is 201 (0.1 pts)                                                             
+                      expected response to have status code 201 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 6. create 2nd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 34.  AssertionError  content is valid (0.8 pts)                                                               
+                      expected undefined to equal 'CS'                                                         
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 6. create 2nd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 35.  AssertionError  self URL is valid (0.1 pts)                                                              
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:2 in test-script                                                            
+                      inside "7. create a course (10 pts) / 6. create 2nd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 36.  AssertionError  status code is 201 (0.1 pts)                                                             
+                      expected response to have status code 201 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 7. create 3rd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 37.  AssertionError  content is valid (0.8 pts)                                                               
+                      expected undefined to equal 'ECE'                                                        
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 7. create 3rd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 38.  AssertionError  self URL is valid (0.1 pts)                                                              
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:2 in test-script                                                            
+                      inside "7. create a course (10 pts) / 7. create 3rd course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 39.  AssertionError  status code is 201 (0.1 pts)                                                             
+                      expected response to have status code 201 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "7. create a course (10 pts) / 8. create 4th course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 40.  AssertionError  content is valid (0.8 pts)                                                               
+                      expected undefined to equal 'AI'                                                         
+                      at assertion:1 in test-script                                                            
+                      inside "7. create a course (10 pts) / 8. create 4th course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 41.  AssertionError  self URL is valid (0.1 pts)                                                              
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:2 in test-script                                                            
+                      inside "7. create a course (10 pts) / 8. create 4th course (1 pts)"                      
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 42.  AssertionError  200 status code                                                                          
+                      expected response to have status code 200 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 1. get courses page 1 (7.5 pts)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 43.  TypeError       Exactly 3 courses on the page                                                            
+                      Cannot read properties of undefined (reading 'length')                                   
+                      at assertion:2 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 1. get courses page 1 (7.5 pts)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 44.  TypeError       Every course has all the required properties                                             
+                      courses is not iterable                                                                  
+                      at assertion:3 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 1. get courses page 1 (7.5 pts)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 45.  AssertionError  The next link is correct                                                                 
+                      expected undefined to be one of [ …(2) ]                                                 
+                      at assertion:4 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 1. get courses page 1 (7.5 pts)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 46.  TypeError       The courses are sorted by subject                                                        
+                      Cannot read properties of undefined (reading 'map')                                      
+                      at assertion:5 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 1. get courses page 1 (7.5 pts)"                   
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 47.  AssertionError  200 status code                                                                          
+                      expected response to have status code 200 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 2. get courses 2nd page (2.5 pts)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 48.  TypeError       At least 1 course on the page                                                            
+                      Cannot read properties of undefined (reading 'length')                                   
+                      at assertion:2 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 2. get courses 2nd page (2.5 pts)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 49.  TypeError       Every course has all the required properties                                             
+                      courses is not iterable                                                                  
+                      at assertion:3 in test-script                                                            
+                      inside "8. get all courses (10 pts) / 2. get courses 2nd page (2.5 pts)"                 
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 50.  AssertionError  status code is 200 (0.05 pts)                                                            
+                      expected response to have status code 200 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "9. get a course (5 pts) / 1. get course 1 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 51.  AssertionError  content is valid (0.75 pts)                                                              
+                      expected undefined to equal 'CS'                                                         
+                      at assertion:1 in test-script                                                            
+                      inside "9. get a course (5 pts) / 1. get course 1 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 52.  AssertionError  self URL is valid (0.15 pts)                                                             
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:2 in test-script                                                            
+                      inside "9. get a course (5 pts) / 1. get course 1 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 53.  AssertionError  content is valid (0.75 pts)                                                              
+                      expected undefined to equal 'CS'                                                         
+                      at assertion:0 in test-script                                                            
+                      inside "9. get a course (5 pts) / 2. get course 2 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 54.  AssertionError  self URL is valid (0.25 pts)                                                             
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:1 in test-script                                                            
+                      inside "9. get a course (5 pts) / 2. get course 2 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 55.  AssertionError  content is valid (0.75 pts)                                                              
+                      expected undefined to equal 'ECE'                                                        
+                      at assertion:0 in test-script                                                            
+                      inside "9. get a course (5 pts) / 3. get course 3 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 56.  AssertionError  self URL is valid (0.25 pts)                                                             
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:1 in test-script                                                            
+                      inside "9. get a course (5 pts) / 3. get course 3 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 57.  AssertionError  content is valid (0.75 pts)                                                              
+                      expected undefined to equal 'AI'                                                         
+                      at assertion:0 in test-script                                                            
+                      inside "9. get a course (5 pts) / 4. get course 4 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 58.  AssertionError  self URL is valid (0.25 pts)                                                             
+                      expected undefined to equal 'https://cs493-uvarovd-hw6-go.uc.r.app…'                     
+                      at assertion:1 in test-script                                                            
+                      inside "9. get a course (5 pts) / 4. get course 4 200 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 59.  AssertionError  status code is 404 (0.5 pts)                                                             
+                      expected response to have status code 404 but got 501                                    
+                      at assertion:0 in test-script                                                            
+                      inside "9. get a course (5 pts) / 5. get a course 404 (1 pts)"                           
+[90m     [39m[90m                [39m[90m                                                                                          [39m
+ 60.  AssertionError  content is valid (0.5 pts)                                                               
+                      expected undefined to equal 'Not found'                                                  
+                      at assertion:1 in test-script                                                            
+                      inside "9. get a course (5 pts) / 5. get a course 404 (1 pts)"                           

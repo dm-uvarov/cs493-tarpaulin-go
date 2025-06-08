@@ -1,0 +1,13 @@
+runtime: go123
+env: standard
+
+handlers:
+- url: /.*
+  script: auto
+
+env_variables:
+  AUTH0_DOMAIN: "YOUR_AUTH0_DOMAIN"
+  AUTH0_CLIENT_ID: "YOUR_AUTH0_CLIENT_ID"
+  # Don't include AUTH0_CLIENT_SECRET here, use App Engine secret manager instead
+  GCP_PROJECT_ID: "YOUR_GCP_PROJECT_ID"
+  GCP_BUCKET_NAME: "YOUR_GCP_BUCKET_NAME"
