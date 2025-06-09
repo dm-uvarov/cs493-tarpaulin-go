@@ -205,7 +205,7 @@ func (us *UserStore) UpdateAvatar(ctx context.Context, id int64, avatarURL strin
 	user.UpdatedAt = time.Now()
 
 	// Create a key
-	key := datastore.IDKey("User", id, nil)
+	key := datastore.IDKey("users", id, nil)
 
 	// Save the user
 	_, err = us.Client.Put(ctx, key, user)

@@ -4,11 +4,13 @@ import (
 	"log"
 	"net/http"
 	"os"
+
 	//"strings"
 
 	"tarpaulin/api"
 	"tarpaulin/auth"
 	"tarpaulin/datastore"
+	"tarpaulin/storage" // Add this line
 
 	//"github.com/form3tech-oss/jwt-go" // Add this for jwt.MapClaims
 	"github.com/gin-gonic/gin"
@@ -49,37 +51,32 @@ func main() {
 		log.Fatalf("Failed to initialize course store: %v", err)
 	}
 
-	// Add middleware to set stores in context
-	r.Use(func(c *gin.Context) {
-		c.Set("userStore", userStore)
-		c.Set("courseStore", courseStore)
-		c.Next()
-	})
-
-	// Add datastore health check endpoint
-	r.GET("/datastore-health", datastoreHealthCheckHandler(userStore))
+	// Initialize storage service
+	storageService, err := storage.NewStorageService()
+	if err != nil {
+		log.Fatalf("Failed to initialize storage service: %v", err)
+	}
 
 	// API routes
 	// User routes
 	userRoutes := r.Group("/users")
 	userRoutes.POST("/login", api.LoginHandler(authService))
-	userRoutes.GET("/", auth.AuthMiddleware(authService), api.AdminOnlyMiddleware(authService), api.GetAllUsersHandler(userStore))
-	userRoutes.GET("/:id", auth.AuthMiddleware(authService), api.GetUserHandler(userStore, courseStore))
-	// TODO: Add avatar routes
-	// userRoutes.POST("/:id/avatar", auth.AuthMiddleware(authService), api.UploadAvatarHandler)
-	// userRoutes.GET("/:id/avatar", auth.AuthMiddleware(authService), api.GetAvatarHandler)
-	// userRoutes.DELETE("/:id/avatar", auth.AuthMiddleware(authService), api.DeleteAvatarHandler)
+	userRoutes.GET("/", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.GetAllUsersHandler(userStore))
+	userRoutes.GET("/:id", auth.AuthMiddleware(authService, userStore), api.GetUserHandler(userStore, courseStore))
+	// Avatar routes
+	userRoutes.POST("/:id/avatar", auth.AuthMiddleware(authService, userStore), api.UploadAvatarHandler(userStore, storageService))
+	userRoutes.GET("/:id/avatar", auth.AuthMiddleware(authService, userStore), api.GetAvatarHandler(userStore, storageService))
+	userRoutes.DELETE("/:id/avatar", auth.AuthMiddleware(authService, userStore), api.DeleteAvatarHandler(userStore, storageService))
 
 	// Course routes
 	courseRoutes := r.Group("/courses")
-	// Fix: Add auth middleware before the admin/instructor middleware
-	courseRoutes.POST("/", auth.AuthMiddleware(authService), api.AdminOnlyMiddleware(authService), api.CreateCourseHandler)
-	courseRoutes.GET("/", api.GetAllCoursesHandler) // Unprotected
-	courseRoutes.GET("/:id", api.GetCourseHandler)  // Unprotected
-	courseRoutes.PATCH("/:id", auth.AuthMiddleware(authService), api.AdminOnlyMiddleware(authService), api.UpdateCourseHandler)
-	courseRoutes.DELETE("/:id", auth.AuthMiddleware(authService), api.AdminOnlyMiddleware(authService), api.DeleteCourseHandler)
-	courseRoutes.PATCH("/:id/students", auth.AuthMiddleware(authService), api.CourseInstructorMiddleware(authService), api.UpdateEnrollmentHandler)
-	courseRoutes.GET("/:id/students", auth.AuthMiddleware(authService), api.CourseInstructorMiddleware(authService), api.GetEnrollmentHandler)
+	courseRoutes.POST("/", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.CreateCourseHandler(courseStore, userStore))
+	courseRoutes.GET("/", api.GetAllCoursesHandler(courseStore)) // Unprotected
+	courseRoutes.GET("/:id", api.GetCourseHandler(courseStore))   // Updated to pass courseStore
+	courseRoutes.PATCH("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.UpdateCourseHandler)
+	courseRoutes.DELETE("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.DeleteCourseHandler)
+	courseRoutes.PATCH("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.UpdateEnrollmentHandler)
+	courseRoutes.GET("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.GetEnrollmentHandler)
 
 	// Get port from environment variable or use default
 	port := os.Getenv("PORT")
@@ -118,5 +115,3 @@ func datastoreHealthCheckHandler(userStore *datastore.UserStore) gin.HandlerFunc
 		})
 	}
 }
-
-// Inside main() function, after other routes

@@ -253,3 +253,23 @@ func (cs *CourseStore) GetCoursesByInstructor(ctx context.Context, instructorID 
 
 	return courseIDs, nil
 }
+
+// GetAllCoursesPaginated gets courses with pagination, ordered by subject
+func (cs *CourseStore) GetAllCoursesPaginated(ctx context.Context, offset, limit int) ([]*models.Course, error) {
+	// Create a query ordered by subject
+	query := datastore.NewQuery("Course").Order("subject").Offset(offset).Limit(limit)
+
+	// Get courses
+	var courses []*models.Course
+	keys, err := cs.Client.GetAll(ctx, query, &courses)
+	if err != nil {
+		return nil, fmt.Errorf("failed to get courses: %v", err)
+	}
+
+	// Set the IDs
+	for i, key := range keys {
+		courses[i].ID = key.ID
+	}
+
+	return courses, nil
+}

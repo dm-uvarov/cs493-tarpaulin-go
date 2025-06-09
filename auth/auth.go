@@ -10,9 +10,10 @@ import (
 	"strings"
 	"time"
 
+	"tarpaulin/datastore" // Add this import
+
 	"github.com/form3tech-oss/jwt-go"
 	"github.com/gin-gonic/gin"
-	"tarpaulin/datastore" // Add this import
 )
 
 // Add these new structs for JWKS
@@ -38,9 +39,9 @@ type AuthService struct {
 
 // UserClaims represents the JWT claims we expect
 type UserClaims struct {
-    Sub string `json:"sub"`
-    // Remove Email field since we only need sub
-    jwt.StandardClaims
+	Sub string `json:"sub"`
+	// Remove Email field since we only need sub
+	jwt.StandardClaims
 }
 
 // NewAuthService creates a new Auth0 service
@@ -222,35 +223,34 @@ func (a *AuthService) getAuth0PublicKey(kid string) (*rsa.PublicKey, error) {
 // GetUserFromToken extracts user information from a token
 // Update GetUserFromToken to only return sub
 func (a *AuthService) GetUserFromToken(tokenString string) (string, error) {
-    token, err := a.ValidateToken(tokenString)
-    if err != nil {
-        fmt.Printf("Token parsing failed: %v\n", err)
-        return "", err
-    }
+	token, err := a.ValidateToken(tokenString)
+	if err != nil {
+		fmt.Printf("Token parsing failed: %v\n", err)
+		return "", err
+	}
 
-    if claims, ok := token.Claims.(jwt.MapClaims); ok {
-        // Only get sub claim
-        if sub, ok := claims["sub"].(string); ok {
-            fmt.Printf("Using sub claim: %s\n", sub)
-            return sub, nil
-        }
+	if claims, ok := token.Claims.(jwt.MapClaims); ok {
+		// Only get sub claim
+		if sub, ok := claims["sub"].(string); ok {
+			fmt.Printf("Using sub claim: %s\n", sub)
+			return sub, nil
+		}
 
-        fmt.Println("No valid sub claim found in token")
-        return "", errors.New("invalid token claims")
-    }
+		fmt.Println("No valid sub claim found in token")
+		return "", errors.New("invalid token claims")
+	}
 
-    fmt.Println("Token claims could not be extracted")
-    return "", errors.New("invalid token")
+	fmt.Println("Token claims could not be extracted")
+	return "", errors.New("invalid token")
 }
 
 // AuthMiddleware is a Gin middleware that validates JWT tokens
-func AuthMiddleware(authService *AuthService) gin.HandlerFunc {
+func AuthMiddleware(authService *AuthService, userStore *datastore.UserStore) gin.HandlerFunc {
 	return func(c *gin.Context) {
 		// Get the Authorization header
 		authHeader := c.GetHeader("Authorization")
 		fmt.Println("DEBUG: Authorization header:", authHeader)
 		if authHeader == "" {
-			// Use the standardized error response
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Authorization header is required"})
 			return
 		}
@@ -258,63 +258,46 @@ func AuthMiddleware(authService *AuthService) gin.HandlerFunc {
 		// Check if the header has the Bearer prefix
 		parts := strings.Split(authHeader, " ")
 		if len(parts) != 2 || parts[0] != "Bearer" {
-			// Use the standardized error response
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Authorization header must be Bearer token"})
 			return
 		}
 
 		fmt.Println("DEBUG: Extracting claims from token:", parts[1][:10]+"...")
-		// Use the modified ValidateToken function to extract claims without validation
 		token, err := authService.ValidateToken(parts[1])
 		if err != nil {
 			fmt.Printf("DEBUG: Token parsing failed: %v\n", err)
-			// Use the standardized error response
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Unauthorized"})
 			return
 		}
 
 		// Extract claims from token
-		// In AuthMiddleware function, replace the email handling section:
 		if claims, ok := token.Claims.(jwt.MapClaims); ok {
-		// Get sub
-		var sub string
-		if subClaim, ok := claims["sub"].(string); ok {
-		sub = subClaim
-		fmt.Printf("DEBUG: Using sub claim: %s\n", sub)
-		}
-		
-		if sub == "" {
-		fmt.Println("DEBUG: No valid sub claim found in token")
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Invalid token claims"})
-		return
-		}
-		
-		// Get user from datastore using sub
-		userStore, exists := c.Get("userStore")
-		if !exists {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"Error": "User store not available"})
-		return
-		}
-		
-		// Fix: Use proper type assertion to *datastore.UserStore instead of interface
-		userStoreInterface, ok := userStore.(*datastore.UserStore)
-		if !ok {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"Error": "Invalid user store type"})
-		return
-		}
-		
-		user, err := userStoreInterface.GetUserBySub(c.Request.Context(), sub)
-		if err != nil {
-		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "User not found"})
-		return
-		}
-		
-		// Set user object in context (remove email)
-		c.Set("user_sub", sub)
-		c.Set("user", user) // Store the actual User object
-		fmt.Println("DEBUG: AuthMiddleware successful, proceeding to next middleware")
-		c.Next()
-		return
+			// Get sub
+			var sub string
+			if subClaim, ok := claims["sub"].(string); ok {
+				sub = subClaim
+				fmt.Printf("DEBUG: Using sub claim: %s\n", sub)
+			}
+
+			if sub == "" {
+				fmt.Println("DEBUG: No valid sub claim found in token")
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Invalid token claims"})
+				return
+			}
+
+			// Use the userStore parameter directly instead of getting from context
+			user, err := userStore.GetUserBySub(c.Request.Context(), sub)
+			if err != nil {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "User not found"})
+				return
+			}
+
+			// Set user object in context
+			c.Set("user_sub", sub)
+			c.Set("user", user)
+			fmt.Println("DEBUG: AuthMiddleware successful, proceeding to next middleware")
+			c.Next()
+			return
 		}
 
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Invalid token"})
@@ -325,57 +308,57 @@ func AuthMiddleware(authService *AuthService) gin.HandlerFunc {
 
 // AuthenticateUser authenticates a user with Auth0 and returns a JWT token
 func (a *AuthService) AuthenticateUser(username, password string) (string, error) {
-    // Create the Auth0 authentication URL
-    authURL := fmt.Sprintf("https://%s/oauth/token", a.Domain)
+	// Create the Auth0 authentication URL
+	authURL := fmt.Sprintf("https://%s/oauth/token", a.Domain)
 
-    // Prepare the request payload
-    payload := map[string]string{
-        "grant_type":    "password",
-        "username":      username, // Use username instead of email
-        "password":      password,
-        "client_id":     a.ClientID,
-        "client_secret": a.Secret,
-        "scope": "openid profile", // Remove email from scope
-    }
+	// Prepare the request payload
+	payload := map[string]string{
+		"grant_type":    "password",
+		"username":      username, // Use username instead of email
+		"password":      password,
+		"client_id":     a.ClientID,
+		"client_secret": a.Secret,
+		"scope":         "openid profile", // Remove email from scope
+	}
 
-    // Convert payload to JSON
-    jsonPayload, err := json.Marshal(payload)
-    if err != nil {
-        return "", err
-    }
+	// Convert payload to JSON
+	jsonPayload, err := json.Marshal(payload)
+	if err != nil {
+		return "", err
+	}
 
-    // Create HTTP request
-    req, err := http.NewRequest("POST", authURL, strings.NewReader(string(jsonPayload)))
-    if err != nil {
-        return "", err
-    }
+	// Create HTTP request
+	req, err := http.NewRequest("POST", authURL, strings.NewReader(string(jsonPayload)))
+	if err != nil {
+		return "", err
+	}
 
-    // Set headers
-    req.Header.Set("Content-Type", "application/json")
+	// Set headers
+	req.Header.Set("Content-Type", "application/json")
 
-    // Send request
-    client := &http.Client{}
-    resp, err := client.Do(req)
-    if err != nil {
-        return "", err
-    }
-    defer resp.Body.Close()
+	// Send request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return "", err
+	}
+	defer resp.Body.Close()
 
-    // Check response status
-    if resp.StatusCode != http.StatusOK {
-        return "", fmt.Errorf("authentication failed with status: %d", resp.StatusCode)
-    }
+	// Check response status
+	if resp.StatusCode != http.StatusOK {
+		return "", fmt.Errorf("authentication failed with status: %d", resp.StatusCode)
+	}
 
-    // Parse response
-    var authResponse struct {
-        IdToken   string `json:"id_token"`
-        TokenType string `json:"token_type"`
-        ExpiresIn int    `json:"expires_in"`
-    }
+	// Parse response
+	var authResponse struct {
+		IdToken   string `json:"id_token"`
+		TokenType string `json:"token_type"`
+		ExpiresIn int    `json:"expires_in"`
+	}
 
-    if err := json.NewDecoder(resp.Body).Decode(&authResponse); err != nil {
-        return "", err
-    }
+	if err := json.NewDecoder(resp.Body).Decode(&authResponse); err != nil {
+		return "", err
+	}
 
-    return authResponse.IdToken, nil
+	return authResponse.IdToken, nil
 }

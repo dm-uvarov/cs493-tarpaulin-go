@@ -29,6 +29,6 @@ type UserDetail struct {
 	ID        int64    `json:"id"`
 	Sub       string   `json:"sub"`
 	Role      string   `json:"role"`
-	AvatarURL string   `json:"avatarUrl,omitempty"`
+	AvatarURL string   `json:"avatar_url,omitempty"`
 	Courses   *[]int64 `json:"courses,omitempty"` // Use pointer to distinguish between nil and empty slice
 }

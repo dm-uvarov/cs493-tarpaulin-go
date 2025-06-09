@@ -1,5 +1,5 @@
 # Tarpaulin API Implementation Plan
-Based on the project requirements, here's a comprehensive plan to implement the Tarpaulin API using Go, Google Cloud Platform, and Auth0.
+ - comprehensive plan to implement the Tarpaulin API using Go, Google Cloud Platform, and Auth0.
 
 ## 1. Project Setup and Configuration
 ### 1.1 Google Cloud Platform Setup
@@ -98,10 +98,3 @@ Datastore operations
 - Set up the correct roles for each user
 - Link Auth0 user IDs (sub) with Datastore user records
 ## Next Steps
-To begin implementation, I recommend starting with:
-
-1. Setting up the GCP project and enabling required APIs
-2. Creating and configuring the Auth0 tenant with the required users
-3. Setting up the basic Go project structure
-4. Implementing the authentication integration with Auth0
-Let me know which specific step you'd like help with first, and I'll provide more detailed guidance for that part of the implementation.
