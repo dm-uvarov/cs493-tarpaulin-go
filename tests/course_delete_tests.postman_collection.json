@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "course-delete-tests",
+		"name": "Course Delete Tests",
+		"description": "Tests for DELETE /courses/:id endpoint",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. delete course 204 (3 pts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 204 (1.5 pts)\", function () {",
+							"    pm.response.to.have.status(204);",
+							"});",
+							"",
+							"pm.test(\"response body is empty (1.5 pts)\", function () {",
+							"    pm.expect(pm.response.text()).to.be.empty;",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"{{course1_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. delete course 400 invalid id (1.5 pts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 400 (0.75 pts)\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"",
+							"pm.test(\"error message is correct (0.75 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    pm.expect(respJSON.Error).to.eql('The request body is invalid');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/invalid",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"invalid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. delete course 401 no auth (1.5 pts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 401 (0.75 pts)\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"",
+							"pm.test(\"error message is correct (0.75 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    pm.expect(respJSON.Error).to.eql('Unauthorized');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"{{course2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4. delete course 403 non-admin (1.5 pts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 403 (0.75 pts)\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"",
+							"pm.test(\"error message is correct (0.75 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    pm.expect(respJSON.Error).to.eql('You don\\'t have permission on this resource');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{instructor1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course2_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"{{course2_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5. delete course 404 not found (1.5 pts)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404 (0.75 pts)\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"error message is correct (0.75 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    pm.expect(respJSON.Error).to.eql('Not found');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/999999",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"999999"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

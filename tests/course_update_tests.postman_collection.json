@@ -1,0 +1,558 @@
+{
+	"info": {
+		"_postman_id": "course-update-tests",
+		"name": "Course Update Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "10. update course (10 pts)",
+			"item": [
+				{
+					"name": "1. update course 200 (3 pts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('200 status code (1 pt)', function () {",
+									"    pm.response.to.have.status(200);",
+									"    points += 1;",
+									"});",
+									"",
+									"pm.test('content is valid (1.5 pts)', function () {",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(respJSON.subject).to.eql('CS');",
+									"    pm.expect(respJSON.number).to.eql(594);",
+									"    pm.expect(respJSON.title).to.eql('Advanced Cloud Development');",
+									"    pm.expect(respJSON.term).to.eql('winter-25');",
+									"    pm.expect(respJSON.instructor_id).to.eql(pm.environment.get('instructor1_id'));",
+									"    pm.expect(respJSON).to.not.have.property('created_at');",
+									"    pm.expect(respJSON).to.not.have.property('updated_at');",
+									"    points += 1.5;",
+									"});",
+									"",
+									"pm.test('self URL is valid (0.5 pts)', function () {",
+									"    const respJSON = pm.response.json();",
+									"    const expectedUrl = 'https://' + pm.environment.get('app_url').replace(/^https?:\/\//, '') + '/courses/' + respJSON.id;",
+									"    pm.expect(respJSON.self).to.eql(expectedUrl);",
+									"    points += 0.5;",
+									"});",
+									"",
+									"console.log('******* Update course Test 1 points = ' + points);",
+									"console.log('******* Update course Tests current points = ' + points);",
+									"pm.environment.set('points_course_update', points);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"number\": 594,\n  \"title\": \"Advanced Cloud Development\",\n  \"term\": \"winter-25\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. verify update with GET (1 pt)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('200 status code (0.25 pts)', function () {",
+									"    pm.response.to.have.status(200);",
+									"    points += 0.25;",
+									"});",
+									"",
+									"pm.test('updated content is correct (0.75 pts)', function () {",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(respJSON.number).to.eql(594);",
+									"    pm.expect(respJSON.title).to.eql('Advanced Cloud Development');",
+									"    pm.expect(respJSON.term).to.eql('winter-25');",
+									"    points += 0.75;",
+									"});",
+									"",
+									"console.log('******* Update course Test 2 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. update course 400 invalid body (1.5 pts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('400 status code (0.75 pts)', function () {",
+									"    pm.response.to.have.status(400);",
+									"    points += 0.75;",
+									"});",
+									"",
+									"pm.test('error message is correct (0.75 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(Object.keys(respJSON).length).to.eql(1);",
+									"    pm.expect(respJSON.Error).to.eql('The request body is invalid');",
+									"    points += 0.75;",
+									"});",
+									"",
+									"console.log('******* Update course Test 3 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "invalid json",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. update course 400 invalid instructor_id (1.5 pts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('400 status code (0.75 pts)', function () {",
+									"    pm.response.to.have.status(400);",
+									"    points += 0.75;",
+									"});",
+									"",
+									"pm.test('error message is correct (0.75 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(Object.keys(respJSON).length).to.eql(1);",
+									"    pm.expect(respJSON.Error).to.eql('The request body is invalid');",
+									"    points += 0.75;",
+									"});",
+									"",
+									"console.log('******* Update course Test 4 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"instructor_id\": 999999\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. update course 200 empty body (1.5 pts)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('200 status code (0.75 pts)', function () {",
+									"    pm.response.to.have.status(200);",
+									"    points += 0.75;",
+									"});",
+									"",
+									"pm.test('course unchanged (0.75 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(respJSON).to.have.property('id');",
+									"    pm.expect(respJSON).to.have.property('subject');",
+									"    pm.expect(respJSON).to.have.property('number');",
+									"    pm.expect(respJSON).to.have.property('title');",
+									"    pm.expect(respJSON).to.have.property('term');",
+									"    pm.expect(respJSON).to.have.property('instructor_id');",
+									"    points += 0.75;",
+									"});",
+									"",
+									"console.log('******* Update course Test 5 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "6. update course 401 unauthorized (1 pt)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('401 status code (0.5 pts)', function () {",
+									"    pm.response.to.have.status(401);",
+									"    points += 0.5;",
+									"});",
+									"",
+									"pm.test('error message is correct (0.5 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(Object.keys(respJSON).length).to.eql(1);",
+									"    pm.expect(respJSON.Error).to.eql('Unauthorized');",
+									"    points += 0.5;",
+									"});",
+									"",
+									"console.log('******* Update course Test 6 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "7. update course 403 forbidden (1 pt)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('403 status code (0.5 pts)', function () {",
+									"    pm.response.to.have.status(403);",
+									"    points += 0.5;",
+									"});",
+									"",
+									"pm.test('error message is correct (0.5 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(Object.keys(respJSON).length).to.eql(1);",
+									"    pm.expect(respJSON.Error).to.eql(\"You don't have permission on this resource\");",
+									"    points += 0.5;",
+									"});",
+									"",
+									"console.log('******* Update course Test 7 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('******* Update course Tests current points = ' + points_course_update);",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{student1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/{{course1_id}}",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"{{course1_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "8. update course 404 not found (1 pt)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let points = 0;",
+									"",
+									"pm.test('404 status code (0.5 pts)', function () {",
+									"    pm.response.to.have.status(404);",
+									"    points += 0.5;",
+									"});",
+									"",
+									"pm.test('error message is correct (0.5 pts)', function(){",
+									"    const respJSON = pm.response.json();",
+									"    pm.expect(Object.keys(respJSON).length).to.eql(1);",
+									"    pm.expect(respJSON.Error).to.eql('Not found');",
+									"    points += 0.5;",
+									"});",
+									"",
+									"console.log('******* Update course Test 8 points = ' + points);",
+									"let points_course_update = pm.environment.get('points_course_update') + points;",
+									"console.log('+++++++++++++++++++++++++++++++++++++++++');",
+									"console.log('Update course Tests Total points = ' + points_course_update);",
+									"console.log('+++++++++++++++++++++++++++++++++++++++++');",
+									"pm.environment.set('points_course_update', points_course_update);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{admin1_jwt}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Updated Title\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{app_url}}/courses/999999",
+							"host": [
+								"{{app_url}}"
+							],
+							"path": [
+								"courses",
+								"999999"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
