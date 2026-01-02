@@ -72,6 +72,9 @@ func (us *UserStore) GetUser(ctx context.Context, id int64) (*models.User, error
 	// Get the user
 	var user models.User
 	if err := us.Client.Get(ctx, key, &user); err != nil {
+		if err == datastore.ErrNoSuchEntity {
+			return nil, fmt.Errorf("user not found")
+		}
 		return nil, fmt.Errorf("failed to get user: %v", err)
 	}
 

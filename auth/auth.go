@@ -251,14 +251,14 @@ func AuthMiddleware(authService *AuthService, userStore *datastore.UserStore) gi
 		authHeader := c.GetHeader("Authorization")
 		fmt.Println("DEBUG: Authorization header:", authHeader)
 		if authHeader == "" {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Authorization header is required"})
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Unauthorized"})
 			return
 		}
 
 		// Check if the header has the Bearer prefix
 		parts := strings.Split(authHeader, " ")
 		if len(parts) != 2 || parts[0] != "Bearer" {
-			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Authorization header must be Bearer token"})
+			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"Error": "Unauthorized"})
 			return
 		}
 

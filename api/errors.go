@@ -32,7 +32,7 @@ func RespondWithError(c *gin.Context, statusCode int, customMessage ...string) {
 		case http.StatusMethodNotAllowed: // 405
 			message = "Method not allowed"
 		case http.StatusConflict: // 409
-			message = "Resource already exists"
+			message = "Enrollment data is invalid"
 		case http.StatusInternalServerError: // 500
 			message = "Internal server error"
 		default:

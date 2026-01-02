@@ -1,0 +1,478 @@
+{
+	"info": {
+		"name": "Course Enrollment Tests",
+		"description": "Test collection for course enrollment endpoints (PATCH and GET /courses/:id/students)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Update Enrollment - Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student1_id}}, {{student2_id}}],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - Invalid Course ID (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"The request body is invalid\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student1_id}}],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/invalid/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "invalid", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - No Authentication (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"Unauthorized\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student1_id}}],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - Student Access (403)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"You don't have permission on this resource\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{student1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student2_id}}],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - Course Not Found (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"Not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student1_id}}],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/99999/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "99999", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - Conflict (409)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {",
+							"    pm.response.to.have.status(409);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"Resource already exists\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [{{student1_id}}],\n    \"remove\": [{{student1_id}}]\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Update Enrollment - Invalid User (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"The request body is invalid\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"add\": [99999],\n    \"remove\": []\n}"
+				},
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Get Enrollment - Success",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response has students array\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson).to.have.property('students');",
+							"    pm.expect(responseJson.students).to.be.an('array');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Get Enrollment - Invalid Course ID (400)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"The request body is invalid\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/courses/invalid/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "invalid", "students"]
+				}
+			}
+		},
+		{
+			"name": "Get Enrollment - No Authentication (401)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 401\", function () {",
+							"    pm.response.to.have.status(401);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"Unauthorized\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Get Enrollment - Student Access (403)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 403\", function () {",
+							"    pm.response.to.have.status(403);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"You don't have permission on this resource\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{student1_jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "{{course1_id}}", "students"]
+				}
+			}
+		},
+		{
+			"name": "Get Enrollment - Course Not Found (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"pm.test(\"Error message is standardized\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.Error).to.eql(\"Not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{admin1_jwt}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{app_url}}/courses/99999/students",
+					"host": ["{{app_url}}"],
+					"path": ["courses", "99999", "students"]
+				}
+			}
+		}
+	]
+}

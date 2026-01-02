@@ -73,10 +73,10 @@ func main() {
 	courseRoutes.POST("/", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.CreateCourseHandler(courseStore, userStore))
 	courseRoutes.GET("/", api.GetAllCoursesHandler(courseStore)) // Unprotected
 	courseRoutes.GET("/:id", api.GetCourseHandler(courseStore))   // Updated to pass courseStore
-	courseRoutes.PATCH("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.UpdateCourseHandler)
-	courseRoutes.DELETE("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.DeleteCourseHandler)
-	courseRoutes.PATCH("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.UpdateEnrollmentHandler)
-	courseRoutes.GET("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.GetEnrollmentHandler)
+	courseRoutes.PATCH("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.UpdateCourseHandler(courseStore, userStore))
+	courseRoutes.DELETE("/:id", auth.AuthMiddleware(authService, userStore), api.AdminOnlyMiddleware(authService, userStore), api.DeleteCourseHandler(courseStore))
+	courseRoutes.PATCH("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.UpdateEnrollmentHandler(courseStore, userStore))
+	courseRoutes.GET("/:id/students", auth.AuthMiddleware(authService, userStore), api.CourseInstructorMiddleware(authService, userStore, courseStore), api.GetEnrollmentHandler(courseStore, userStore))
 
 	// Get port from environment variable or use default
 	port := os.Getenv("PORT")

@@ -69,6 +69,9 @@ func (cs *CourseStore) GetCourse(ctx context.Context, id int64) (*models.Course,
 	// Get the course
 	var course models.Course
 	if err := cs.Client.Get(ctx, key, &course); err != nil {
+		if err == datastore.ErrNoSuchEntity {
+			return nil, fmt.Errorf("course not found")
+		}
 		return nil, fmt.Errorf("failed to get course: %v", err)
 	}
 
@@ -118,12 +121,25 @@ func (cs *CourseStore) UpdateCourse(ctx context.Context, id int64, updates *mode
 	return course, nil
 }
 
-// DeleteCourse deletes a course
+// DeleteCourse deletes a course and all related enrollment data
 func (cs *CourseStore) DeleteCourse(ctx context.Context, id int64) error {
-	// Create a key
-	key := datastore.IDKey("Course", id, nil)
+	// First, delete all enrollments for this course
+	query := datastore.NewQuery("Enrollment").Filter("courseId =", id)
+	var enrollments []*models.Enrollment
+	keys, err := cs.Client.GetAll(ctx, query, &enrollments)
+	if err != nil {
+		return fmt.Errorf("failed to get enrollments for course deletion: %v", err)
+	}
 
-	// Delete the course
+	// Delete all enrollment records
+	if len(keys) > 0 {
+		if err := cs.Client.DeleteMulti(ctx, keys); err != nil {
+			return fmt.Errorf("failed to delete enrollments: %v", err)
+		}
+	}
+
+	// Then delete the course itself
+	key := datastore.IDKey("Course", id, nil)
 	if err := cs.Client.Delete(ctx, key); err != nil {
 		return fmt.Errorf("failed to delete course: %v", err)
 	}

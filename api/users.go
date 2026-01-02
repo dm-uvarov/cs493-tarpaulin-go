@@ -222,8 +222,8 @@ func UploadAvatarHandler(userStore *datastore.UserStore, storageService *storage
 		}
 		fmt.Printf("DEBUG: File type validation successful\n")
 
-		// Upload to Google Cloud Storage
-		objectName := fmt.Sprintf("avatars/%s/avatar", userID)
+		// Upload to Google Cloud Storage - FIX: Use int64 format consistently
+		objectName := fmt.Sprintf("avatars/%d/avatar", userIDInt)
 		fmt.Printf("DEBUG: Uploading to GCS with object name: %s\n", objectName)
 		avatarURL, err := storageService.UploadFile(c.Request.Context(), objectName, file)
 		if err != nil {

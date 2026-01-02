@@ -224,6 +224,148 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "6. verify enrollments deleted after course deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 404 for deleted course enrollment (2 pts)\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"error message is correct (1 pt)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    pm.expect(respJSON.Error).to.eql('Not found');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{admin1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/courses/{{course1_id}}/students",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"courses",
+						"{{course1_id}}",
+						"students"
+					]
+				}
+			}
+		},
+		{
+			"name": "7. verify instructor courses updated after deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200 (1 pt)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"deleted course not in instructor's courses (2 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    const deletedCourseId = parseInt(pm.environment.get('course1_id'));",
+							"    if (respJSON.courses) {",
+							"        pm.expect(respJSON.courses).to.not.include(deletedCourseId);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{instructor1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/users/{{instructor1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{instructor1_id}}"
+					]
+				}
+			}
+		},
+		{
+			"name": "8. verify student courses updated after deletion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code is 200 (1 pt)\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"deleted course not in student's courses (2 pts)\", function () {",
+							"    const respJSON = pm.response.json();",
+							"    const deletedCourseId = parseInt(pm.environment.get('course1_id'));",
+							"    if (respJSON.courses) {",
+							"        pm.expect(respJSON.courses).to.not.include(deletedCourseId);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{student1_jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{app_url}}/users/{{student1_id}}",
+					"host": [
+						"{{app_url}}"
+					],
+					"path": [
+						"users",
+						"{{student1_id}}"
+					]
+				}
+			}
 		}
 	]
 }
